@@ -156,7 +156,7 @@ function round_robin(processos, quantum; custo_troca=1, n_cores=2)
         ultimo_id_cores[indice_core] = p.id
 
         exec_time = min(quantum, restante[p.id])
-        inicio = tempo_atual_core
+        inicio = max(tempo_atual_core, p.chegada)
         fim = inicio + exec_time
         push!(execucao, (id=p.id, core=indice_core, chegada=p.chegada, inicio=inicio, fim=fim))
 
@@ -253,39 +253,44 @@ function EscolheProcesso()
     ")
     escolha2 = parse(Int, readline())
 
+    println("
+    Escolha a quantidade de cores:
+    ")
+    cores = parse(Int, readline())
+
     if (escolha1 == 1)
-        m_rr = calcular_metricas(round_robin(P1, escolha2), P1)
-        m_fcfs = calcular_metricas(fcfs(P1), P1)
-        m_sjf = calcular_metricas(sjf(P1), P1)
-        m_prioridade = calcular_metricas(prioridade(P1), P1)
+        m_rr = calcular_metricas(round_robin(P1, escolha2, n_cores=cores), P1)
+        m_fcfs = calcular_metricas(fcfs(P1, n_cores=cores), P1)
+        m_sjf = calcular_metricas(sjf(P1, n_cores=cores), P1)
+        m_prioridade = calcular_metricas(prioridade(P1, n_cores=cores), P1)
     end
 
     if (escolha1 == 2)
-        m_rr = calcular_metricas(round_robin(P2, escolha2), P2)
-        m_fcfs = calcular_metricas(fcfs(P2), P2)
-        m_sjf = calcular_metricas(sjf(P2), P2)
-        m_prioridade = calcular_metricas(prioridade(P2), P2)
+        m_rr = calcular_metricas(round_robin(P2, escolha2, n_cores=cores), P2)
+        m_fcfs = calcular_metricas(fcfs(P2, n_cores=cores), P2)
+        m_sjf = calcular_metricas(sjf(P2, n_cores=cores), P2)
+        m_prioridade = calcular_metricas(prioridade(P2, n_cores=cores), P2)
     end
 
     if (escolha1 == 3)
-        m_rr = calcular_metricas(round_robin(P3, escolha2), P3)
-        m_fcfs = calcular_metricas(fcfs(P3), P3)
-        m_sjf = calcular_metricas(sjf(P3), P3)
-        m_prioridade = calcular_metricas(prioridade(P3), P3)
+        m_rr = calcular_metricas(round_robin(P3, escolha2, n_cores=cores), P3)
+        m_fcfs = calcular_metricas(fcfs(P3, n_cores=cores), P3)
+        m_sjf = calcular_metricas(sjf(P3, n_cores=cores), P3)
+        m_prioridade = calcular_metricas(prioridade(P3, n_cores=cores), P3)
     end
 
     if (escolha1 == 4)
-        m_rr = calcular_metricas(round_robin(P4, escolha2), P4)
-        m_fcfs = calcular_metricas(fcfs(P4), P4)
-        m_sjf = calcular_metricas(sjf(P4), P4)
-        m_prioridade = calcular_metricas(prioridade(P4), P4)
+        m_rr = calcular_metricas(round_robin(P4, escolha2, n_cores=cores), P4)
+        m_fcfs = calcular_metricas(fcfs(P4, n_cores=cores), P4)
+        m_sjf = calcular_metricas(sjf(P4, n_cores=cores), P4)
+        m_prioridade = calcular_metricas(prioridade(P4, n_cores=cores), P4)
     end
 
     if (escolha1 == 5)
-        m_rr = calcular_metricas(round_robin(P5, escolha2), P5)
-        m_fcfs = calcular_metricas(fcfs(P5), P5)
-        m_sjf = calcular_metricas(sjf(P5), P5)
-        m_prioridade = calcular_metricas(prioridade(P5), P5)
+        m_rr = calcular_metricas(round_robin(P5, escolha2, n_cores=cores), P5)
+        m_fcfs = calcular_metricas(fcfs(P5, n_cores=cores), P5)
+        m_sjf = calcular_metricas(sjf(P5, n_cores=cores), P5)
+        m_prioridade = calcular_metricas(prioridade(P5, n_cores=cores), P5)
     end
 
     println("Resultados RR: ", m_rr)
