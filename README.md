@@ -21,3 +21,6 @@ A CPU scheduling simulator written in Julia, developed for the **Operating Syste
 3. Run the main file:
    ```bash
    julia Algoritmos.jl
+
+
+   tst prt
